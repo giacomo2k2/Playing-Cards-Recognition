@@ -4,10 +4,16 @@ Recognising Italian regional playing cards (40-card deck: Cups, Coins, Swords an
 
 Course project for *Computer Vision and Image Processing*, Automation Engineering, University of Bologna (2024).
 
-<p align="center">
-  <img src="test_images/CardTest9.jpeg" width="360" alt="Test scene with three cards among distractors">
-  <br><sub>Test scene: three cards (7 of Batons, 2 of Swords, 5 of Swords) with distractor objects</sub>
-</p>
+<table>
+  <tr>
+    <td align="center" width="55%"><img src="results/detection_9.jpg" width="380" alt="Three overlapping cards recognised among distractor objects"></td>
+    <td align="center" width="45%"><img src="results/detection_5.jpg" width="320" alt="Two overlapping cards recognised"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Three fanned cards recognised; phone, banknote, mug and card box rejected</sub></td>
+    <td align="center"><sub>Overlapping cards separated by feature matching</sub></td>
+  </tr>
+</table>
 
 ## Pipeline
 
@@ -30,6 +36,12 @@ python main_work_threads.py    # multithreaded matching
 
 Parameters (segmentation threshold, detector, matcher, ratio-test thresholds, confidence) are set at the top of the parameters section in each script.
 
+To render annotated detection images like the ones above (written to `results/`):
+
+```bash
+python render_detections.py 5 9    # test scene numbers
+```
+
 ## Structure
 
 | Path | Contents |
@@ -38,6 +50,8 @@ Parameters (segmentation threshold, detector, matcher, ratio-test thresholds, co
 | `images/` | Photos of the 40 reference cards |
 | `deck/` | Segmented and cropped reference cards (generated from `images/`) |
 | `test_images/` | Test scenes, including overlapping, rotated and distorted cards plus distractors, and the background image |
+| `render_detections.py` | Draws per-blob detections on test scenes using the same pipeline and parameters |
+| `results/` | Annotated detection images |
 | `results.xlsx` | Logged metrics and parameters for each run |
 | `archive/` | Earlier development versions |
 
